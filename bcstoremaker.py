@@ -152,7 +152,7 @@ def create_image(image_url, product_id):
             
             # Check the response status code and print the result
             if response.status_code == 200: # The request was successful
-                print(f"Image created successfully: {response.json()}")
+                print(f"Image created successfully!")
             else: # The request failed
                 print(f"An error occurred while creating an image on BigCommerce: {response.status_code} {response.text}")
         except bigcommerce.exception.ClientRequestException as e: # Added an exception handler for ClientRequestException, which is raised when there is an error in the request parameters or headers
@@ -200,8 +200,7 @@ def main():
                         # Print the result
                         print(f"Image created successfully!")
                        
-                    else:
-                        print(f"Image creation failed!")
+                    
                 else:
                     print(f"Image generation failed!")
             else:
