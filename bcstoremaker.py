@@ -101,7 +101,9 @@ def create_product(product_data, category):
             price=product_data["price"],
             type="physical",
             availability="available",
-            weight=product_data["weight"]
+            weight=product_data["weight"],
+            is_visible="true"
+            meta_description="SEO meta description"
             
         )
         # Return the product object
