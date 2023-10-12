@@ -102,7 +102,7 @@ def create_product(product_data, category):
             type="physical",
             availability="available",
             weight=product_data["weight"],
-            is_visible="true"
+            is_visible="true",
             meta_description="SEO meta description"
             
         )
