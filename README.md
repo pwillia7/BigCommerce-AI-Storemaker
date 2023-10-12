@@ -4,6 +4,8 @@ This CLI tool can be used to create fake product data on a Bigcommerce store. It
 
 It will also create a specified number of users with a specified number of orders using the newly created products. 
 
+All products will be listed and visible on channel 1 (stencil) by default. 
+
 This was built 95% with Bing.com/chat and copy/paste.
 
 ## How to use

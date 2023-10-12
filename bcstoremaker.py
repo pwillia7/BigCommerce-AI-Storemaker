@@ -106,6 +106,50 @@ def create_product(product_data, category):
             meta_description="SEO meta description"
             
         )
+         # Set the headers for authentication and content type
+        headers = {
+            "X-Auth-Token": config["bigcommerce_api_key"],
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }
+        url2 = f"https://api.bigcommerce.com/stores/{config['bigcommerce_store_hash']}/v3/catalog/products/{product.id}/variants"
+        response2 = requests.get(url2, headers=headers)
+        if response2.status_code == 200:
+            # Parse the response as a JSON object
+            data = response2.json()
+            # Get the first variant from the data
+            variant = data["data"][0]
+            # Get the variant ID from the variant object
+            variant_id = variant["id"]
+            # Print the variant ID
+            print(f"Variant ID: {variant_id}")
+        else:
+            # Print the error message
+            print(f"An error occurred while getting the product variant: {response.status_code} {response.text}")
+        # Set the URL for the channel listings endpoint
+        url = f"https://api.bigcommerce.com/stores/{config['bigcommerce_store_hash']}/v3/channels/1/listings"
+
+
+        # Set the payload for listing the product ID and variant ID to channel 1
+        payload = [{
+            "product_id": product.id,
+            "state": "active",
+            "variants": [{
+                "product_id": product.id,
+                "variant_id": variant_id,
+                "state": "active"
+            }]
+        }]
+
+
+        # Make a POST request to the channel listings endpoint with the headers and payload
+        response = requests.post(url, headers=headers, json=payload)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            print(f"Product {product.id} listed successfully to channel 1")
+        else:
+            print(f"An error occurred while listing the product to channel 1: {response.status_code} {response.text}")
         # Return the product object
         return product
     except bigcommerce.exception.ClientRequestException as e: # Added an exception handler for ClientRequestException, which is raised when there is an error in the request parameters or headers
