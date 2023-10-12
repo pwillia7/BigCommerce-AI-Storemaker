@@ -18,3 +18,6 @@ This was built 95% with Bing.com/chat and copy/paste.
 ![](img/20231011200424.png)
 
 ![](img/20231011200447.png)
+
+## Cost
+Doing some rough napkin math, generating 1000 products with 512x512 images should cost you about $27 ($9 for GPT-4 and $18 for 1000 dalle images). The $9 could be reduced some by switching to gpt-3 or another cheaper model. 
