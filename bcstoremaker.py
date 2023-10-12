@@ -121,7 +121,7 @@ def generate_image(description):
     try: # Added a try-except block to handle any errors from the OpenAI API
         image = openai.Image.create(
             prompt=description,
-            size="1024x1024", # Set the size of the image in pixels (width, height)
+            size="512x512", # Set the size of the image in pixels (width, height)
         )
         # Return the URL of the image
         return image.data[0].url # Get the URL from the first element of the data list
